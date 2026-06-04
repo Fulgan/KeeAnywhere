@@ -1,0 +1,11 @@
+{
+  "_comment": "Copy this file to 'KeeAnywhere.appids.json' in your KeePass settings directory and fill in your own OAuth app credentials. See APP-IDS.md. Only include the providers you use; omit the rest. The plugin falls back to its built-in keys for any provider not listed here.",
+
+  "OneDrive":              { "ClientId": "your-onedrive-application-id" },
+  "GoogleDrive":           { "ClientId": "your-google-client-id", "ClientSecret": "your-google-client-secret" },
+  "GoogleDriveRestricted": { "ClientId": "your-google-client-id", "ClientSecret": "your-google-client-secret" },
+  "Dropbox":               { "ClientId": "your-dropbox-app-key", "ClientSecret": "your-dropbox-app-secret" },
+  "DropboxRestricted":     { "ClientId": "your-dropbox-appfolder-app-key", "ClientSecret": "your-dropbox-appfolder-app-secret" },
+  "Box":                   { "ClientId": "your-box-client-id", "ClientSecret": "your-box-client-secret" },
+  "HiDrive":               { "ClientId": "your-hidrive-client-id", "ClientSecret": "your-hidrive-client-secret" }
+}

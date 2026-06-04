@@ -25,7 +25,10 @@ namespace KeeAnywhere.StorageProviders.HiDrive
 
         public static IHiDriveAuthenticator GetAuthenticator()
         {
-            return new HiDriveAuthenticator(HiDriveClientId, HiDriveClientSecret, ProxyTools.CreateHttpClientHandler);
+            return new HiDriveAuthenticator(
+                AppCredentials.ClientId(StorageType.HiDrive, HiDriveClientId),
+                AppCredentials.ClientSecret(StorageType.HiDrive, HiDriveClientSecret),
+                ProxyTools.CreateHttpClientHandler);
         }
 
         internal static IHiDriveClient GetClient(IHiDriveAuthenticator authenticator)

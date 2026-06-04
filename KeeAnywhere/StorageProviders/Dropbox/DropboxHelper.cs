@@ -2,6 +2,7 @@
 using System.Text;
 using System.Threading.Tasks;
 using Dropbox.Api;
+using KeeAnywhere.Configuration;
 
 namespace KeeAnywhere.StorageProviders.Dropbox
 {
@@ -27,8 +28,12 @@ namespace KeeAnywhere.StorageProviders.Dropbox
 
         public static DropboxClient GetApi(bool isRestricted, string refreshToken)
         {
-            var appKey = isRestricted ? DropboxAppFolderOnlyClientId : DropboxFullAccessClientId;
-            var appSecret = isRestricted ? DropboxAppFolderOnlyClientSecret : DropboxFullAccessClientSecret;
+            var appKey = isRestricted
+                ? AppCredentials.ClientId(StorageType.DropboxRestricted, DropboxAppFolderOnlyClientId)
+                : AppCredentials.ClientId(StorageType.Dropbox, DropboxFullAccessClientId);
+            var appSecret = isRestricted
+                ? AppCredentials.ClientSecret(StorageType.DropboxRestricted, DropboxAppFolderOnlyClientSecret)
+                : AppCredentials.ClientSecret(StorageType.Dropbox, DropboxFullAccessClientSecret);
 
             var api = new DropboxClient(refreshToken, appKey, appSecret, GetConfig());
 

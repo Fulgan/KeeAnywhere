@@ -41,7 +41,7 @@ namespace KeeAnywhere.StorageProviders.OneDrive
 
         public static OidcFlow CreateOidcFlow()
         {
-            return new OidcFlow(StorageType.OneDrive, Authority, OneDriveClientId, null, Scopes)
+            return new OidcFlow(StorageType.OneDrive, Authority, AppCredentials.ClientId(StorageType.OneDrive, OneDriveClientId), null, Scopes)
             {
                 PrepareLoginRequest = request => { request.FrontChannelExtraParameters.Add("prompt", "select_account"); } // login
             };

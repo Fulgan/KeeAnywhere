@@ -39,7 +39,10 @@ namespace KeeAnywhere.StorageProviders.Box
 
         static BoxHelper()
         {
-            Config = new BoxConfig(BoxClientId, BoxClientSecret, null);
+            Config = new BoxConfig(
+                AppCredentials.ClientId(StorageType.Box, BoxClientId),
+                AppCredentials.ClientSecret(StorageType.Box, BoxClientSecret),
+                null);
         }
 
         public static async Task<BoxClient> GetClient(AccountConfiguration account)

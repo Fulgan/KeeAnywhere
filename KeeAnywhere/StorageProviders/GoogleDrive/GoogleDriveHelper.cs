@@ -52,8 +52,8 @@ namespace KeeAnywhere.StorageProviders.GoogleDrive
                     {
                         ClientSecrets = new ClientSecrets
                         {
-                            ClientId = GoogleDriveClientId,
-                            ClientSecret = GoogleDriveClientSecret
+                            ClientId = AppCredentials.ClientId(StorageType.GoogleDrive, GoogleDriveClientId),
+                            ClientSecret = AppCredentials.ClientSecret(StorageType.GoogleDrive, GoogleDriveClientSecret)
                         },
                         Scopes = Scopes,
                         HttpClientFactory = new GoogleDriveHttpClientFactory()
@@ -76,8 +76,8 @@ namespace KeeAnywhere.StorageProviders.GoogleDrive
                     {
                         ClientSecrets = new ClientSecrets
                         {
-                            ClientId = GoogleDriveClientId,
-                            ClientSecret = GoogleDriveClientSecret
+                            ClientId = AppCredentials.ClientId(StorageType.GoogleDriveRestricted, GoogleDriveClientId),
+                            ClientSecret = AppCredentials.ClientSecret(StorageType.GoogleDriveRestricted, GoogleDriveClientSecret)
                         },
                         Scopes = Scopes,
                         HttpClientFactory = new GoogleDriveHttpClientFactory()
@@ -92,9 +92,9 @@ namespace KeeAnywhere.StorageProviders.GoogleDrive
         public static OidcFlow CreateOidcFlow(bool isAccessRestricted)
         {
             if (isAccessRestricted)
-                return new OidcFlow(StorageType.GoogleDriveRestricted, Authority, GoogleDriveClientId, GoogleDriveClientSecret, ScopesRestricted);
+                return new OidcFlow(StorageType.GoogleDriveRestricted, Authority, AppCredentials.ClientId(StorageType.GoogleDriveRestricted, GoogleDriveClientId), AppCredentials.ClientSecret(StorageType.GoogleDriveRestricted, GoogleDriveClientSecret), ScopesRestricted);
             else
-                return new OidcFlow(StorageType.GoogleDrive, Authority, GoogleDriveClientId, GoogleDriveClientSecret, Scopes);
+                return new OidcFlow(StorageType.GoogleDrive, Authority, AppCredentials.ClientId(StorageType.GoogleDrive, GoogleDriveClientId), AppCredentials.ClientSecret(StorageType.GoogleDrive, GoogleDriveClientSecret), Scopes);
         }
 
         public static async Task<DriveService> GetClient(AccountConfiguration account)
